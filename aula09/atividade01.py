@@ -87,6 +87,9 @@ try:
     
     plt.subplot(2, 1, 2)
     plt.text(0.1, 0.9, f'Média: {media_estelionato:.0f}')
+    plt.text(0.1, 0.8, f'Média: {mediana_estelionato:.0f}')
+    plt.text(0.1, 0.7, f'Média: {distancia:.0f}')
+    plt.text(0.1, 0.6, f'Média: {media_estelionato:.0f}')
     plt.show()
     
     
