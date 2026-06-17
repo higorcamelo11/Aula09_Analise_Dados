@@ -28,6 +28,10 @@ try:
     # Maior e Menor
     df_estelionato_menores = df_estelionato[df_estelionato['estelionato'] < q1]
     df_estelionato_maiores = df_estelionato[df_estelionato['estelionato'] > q3]
+    # Mínima, Máxima e Amplitude
+    maximo = np.max(array_estelionato)
+    minimo = np.min(array_estelionato)
+    amplitude = maximo - minimo
 
     
     print(f'\nMeses e anos com as menores quantidade de ocorrências, são aqueles que apresentaram a quantidade menor que {q1} casos')
@@ -77,19 +81,35 @@ except Exception as e:
     
 try:
     df_estelionato_maiores = df_estelionato_maiores.sort_values(by='estelionato', ascending=False).head(10)
-    plt.figure(figsize=(18, 8))
-    plt.subplots(2, 1)
+    # plt.figure(figsize=(18, 8))
+    plt.subplots(2, 2, figsize=(18, 7))
     
-    plt.subplot(2, 1, 1)
-    plt.boxplot(array_estelionato, vert=False, showmeans=True)
+    #POSIÇÃO 1 - BOXPLOT
+    plt.subplot(2, 2, 1)
+    # showfliers=False
+    plt.boxplot(array_estelionato, vert=False, showmeans=True, showfliers=False)
+    plt.title('Boxplot da Distribuição')
     
     
-    
-    plt.subplot(2, 1, 2)
+    #POSIÇÃO 2 - MEDIDAS
+    plt.subplot(2, 2, 2)
     plt.text(0.1, 0.9, f'Média: {media_estelionato:.0f}')
-    plt.text(0.1, 0.8, f'Média: {mediana_estelionato:.0f}')
-    plt.text(0.1, 0.7, f'Média: {distancia:.0f}')
-    plt.text(0.1, 0.6, f'Média: {media_estelionato:.0f}')
+    plt.text(0.1, 0.8, f'Distância: {distancia:.0f}')
+    plt.text(0.1, 0.7, f'Limite Inferior: {limite_inferior:.0f}')
+    plt.text(0.1, 0.6, f'Mínimo: {minimo:.0f}')
+    plt.text(0.1, 0.5, f'Q1: {q1:.0f}')
+    plt.text(0.1, 0.4, f'Mediana: {mediana_estelionato:.0f}')
+    plt.text(0.1, 0.3, f'Q3: {q3:.0f}')
+    plt.text(0.1, 0.2, f'Máximo: {maximo:.0f}')
+    plt.text(0.1, 0.1, f'Limite Superior: {limite_superior:.0f}')
+    plt.text(0.1, 0.0, f'Amplitude Total: {amplitude:.0f}')
+    
+    plt.axis('off')
+    plt.title('Resumo Estatístico') 
+    
+    
+    # plt.subplot(2, 2, 3)
+    
     plt.show()
     
     
